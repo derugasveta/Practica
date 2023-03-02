@@ -7,7 +7,7 @@ namespace pz3
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите a: ");
+            Console.Write("Enter a: ");
             double a = double.Parse(Console.ReadLine());
 
             double z1 = (a + 2 / Math.Sqrt(2 * a)) - (a / Math.Sqrt(2 * a) + 2) + (2 / a - Math.Sqrt(2 * a));
