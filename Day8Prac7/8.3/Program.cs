@@ -1,19 +1,27 @@
 ﻿using System.Text.RegularExpressions;
-string text = "Привет как дела привет как дела привет";
-//Console.Write("Enter text: ");
-//string text = Console.ReadLine();
 
-Regex regex = new Regex(@".+[а-я]{2,}[ ]");
-MatchCollection words = regex.Matches(text);
+Console.Write("Введите текст :");
+string text = Console.ReadLine();
 
-if (words.Count > 0)
+if (CheckWhetherHTMLCode(text))
 {
-    foreach (Match word in words)
-    {
-        Console.WriteLine(word.Value);
-    }
+    Console.WriteLine("Текст является  HTML кодом");
 }
 else
 {
-    Console.WriteLine("No repeated words");
+    Console.WriteLine("Текст не является  HTML кодом");
+}
+
+bool CheckWhetherHTMLCode(string text)
+{
+    string[] arrayHTMLTag = { "<html>", "<form>", "<h1>" };
+    for (int i = 0; i < arrayHTMLTag.Length; i++)
+    {
+        Regex regex = new Regex(arrayHTMLTag[i]);
+        if (regex.Matches(text).Count > 0)
+        {
+            return true;
+        }
+    }
+    return false;
 }
