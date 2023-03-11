@@ -23,11 +23,6 @@ namespace _2
             return $"{base.ToString()}\nCirculation: {_circulation} \nPrice: {_price}";
 
         }
-        //public double AverageСostОfMagazines()
-        //{
-
-        //}
-
         public override decimal Cost()
         {
             return _circulation * _price;

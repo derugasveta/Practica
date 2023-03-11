@@ -24,7 +24,7 @@ var TotalCost = 0M;
 foreach (var product in products)
 {
     TotalCost += product.Cost();
-    
+
 }
 var totalCostNewspaper = 0M;
 var count = 0M;
@@ -44,10 +44,8 @@ foreach (var product in products)
     }
 
 }
-Console.WriteLine($"средняя сумма стоимость журналов {count}:F2");
-Console.WriteLine($"средняя сумма стоимость газет {count1}:F2");
-
-
+Console.WriteLine($"средняя сумма стоимость журналов {count}");
+Console.WriteLine($"средняя сумма стоимость газет {count1}");
 Newspaper CreateNewspaper()
 {
     Console.Write("\nВведите название газеты: ");
