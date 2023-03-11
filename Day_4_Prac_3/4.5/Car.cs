@@ -9,10 +9,16 @@ namespace _4._5
     class Car
     {
 
-        public int _numberPlate;
-        public string _color;
-        public string _ownerName;
-        public string _presence;
+        private int _numberPlate;
+        private string _color;
+        private string _ownerName;
+        private string _presence;
+
+        public int NumberPlate => _numberPlate;
+        public string Color => _color;
+        public string OwnerName => _ownerName;
+        public string Presence => _presence;
+
         public Car(int numberPlate, string color, string ownerName, string presence)
         {
             _numberPlate = numberPlate;

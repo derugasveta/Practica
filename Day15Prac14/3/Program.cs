@@ -8,7 +8,7 @@ void ExponentiationInAddition(object obj)
         double exp = 0;
         for (double i = myparams.A; i < myparams.N; i++)
         {
-            exp = myparams.A + Math.Pow(myparams.A, myparams.N);
+            exp += Math.Pow(myparams.A, myparams.N);
         }
         Console.WriteLine(exp);
         Thread.Sleep(10);
@@ -19,10 +19,10 @@ object locker = new object();
 void ExponentiationInMultiplication(double a, double n )
 { lock (locker)
     {
-        double exp = 0;
+        double exp = 1;
         for (double i = a; i < n; i++)
         {
-            exp = a * Math.Pow(a, n);
+            exp += exp * Math.Pow(a, n);
         }
         Console.WriteLine(exp);
         Thread.Sleep(10);
