@@ -4,40 +4,36 @@ using _1;
 
 
 MyList<int> myList = new MyList<int>();
+myList.Add(1);
+myList.Add(2);
+myList.Add(3);
+myList.Add(4);
 
-var numberToAdd = 5;
-var numberToRemove = 6;
-var index = 2;
-int[] array = {1, 2, 3};
-foreach (var arr in array)
+Console.WriteLine("Array:");
+for (int i = 0; i < myList.Count; i++)
 {
-
-    Console.Write(arr + " ");
-
+    Console.Write(myList[i] + " ");
 }
+
+Console.WriteLine("\nEnter index elementa, that you interested");
+int index = int.Parse(Console.ReadLine());
 Console.WriteLine();
-Console.WriteLine("New array:");
+Console.WriteLine($"Element at index {index} - {myList[index]} " );
+Console.WriteLine($"Count element {myList.Count}");
+Console.WriteLine();
 
-myList.Add(numberToAdd);
-foreach (var arr in array)
+Console.WriteLine();
+Console.WriteLine("Challenge a static method: ");
+WriteArray(MyList<int>.GetArray(myList));
+
+
+void WriteArray<T>(T[] arr)
 {
-
-    Console.Write(arr + " ");
-
+    for (int i = 0; i < arr.Length; i++)
+    {
+        Console.Write(arr[i] + " ");
+    }
 }
-Console.WriteLine(numberToAdd);
 
 
 
-
-
-
-//var wasNumberRemoved=numbers.Remove(numberToRemove);
-//if (wasNumberRemoved)
-//{
-//    Console.WriteLine(numbers);
-
-//}
-
-//Console.WriteLine();
-//Console.WriteLine(numbers[index]);

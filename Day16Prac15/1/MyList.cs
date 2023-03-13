@@ -8,47 +8,40 @@ namespace _1
 {
     class MyList<T>
     {
-        protected int index = 0;
+       
 
-        protected T[] arr = new T[100];
+        protected T[] arr =Array.Empty<T>();
         public void Add(T value)
         {
-            arr[index] = value;
-            index++;
+            var newArray = new T[arr.Length+1];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                newArray[i] = arr[i];
+            }
+            newArray[arr.Length] = value;
+            arr = newArray;
         }
 
-        public void ShowValues()
+        internal static T[] GetArray(MyList<T> myList)
         {
-            for (int i = 0; i < index; i++)
-                Console.WriteLine(arr[i]);
+            if (myList.arr != null)
+            {
+                return myList.arr;
+            }
+            return default(T[]);
         }
+
         public T this[int index]
         {
-            set
-            {
-                arr[index] = value;
-            }
+            get => arr[index];
+            set => arr[index] = value;
+        }
+        public int Count
+        {
+            get { return arr.Length; }
 
-            get
-            {
-                return arr[index];
-            }
         }
 
-            //get
-            //{
-            //    // если индекс имеется в массиве
-            //    if (index >= 0 && index < values.Length)
-            //        return values[index]; // то возвращаем объект Person по индексу
-            //    else
-            //        throw new ArgumentOutOfRangeException(); // иначе генерируем исключение
-            //}
-            //set
-            //{
-            //    // если индекс есть в массиве
-            //    if (index >= 0 && index < values.Length)
-            //        values[index] = value;    // переустанавливаем значение по индексу
-            //}
     }
 
 }
