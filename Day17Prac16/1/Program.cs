@@ -1,8 +1,11 @@
-﻿string file = File.ReadAllText("D:\\с#\\кпияп\\практика по с#\\Practica\\Day17Prac16\\txt.txt");
-Console.WriteLine(file);
+﻿using System.Text;
+
+var pathFileTORead = @"..\..\..\..\txt2.txt";
+string file = File.ReadAllText(pathFileTORead, Encoding.UTF8);
+Console.Write("File:" + file);
 int sum = 0;
-for (int i = 0; i < file.Length+1; i++)
+for (int i = 0; i < file.Length; i++)
 {
     sum += i;
 }
-Console.WriteLine(sum);
+Console.Write("Sum: " + sum);
