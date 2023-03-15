@@ -10,31 +10,31 @@ namespace Library
     public class Triangle
     {
         private int a;
-        public int A { get => this.a; set=>this.a=value; }
+        public int A { get => this.a; set => this.a = value; }
 
         public int B { get; init; }
         public int C { get; init; }
-       
+
         public Triangle(int a, int b, int c)
         {
             this.a = a;
             B = b;
             C = c;
         }
-              
-        public  double Perimeter()
+
+        public double Perimeter()
         {
             return a + B + C;
         }
-        public  double Square()
+        public double Square()
         {
-            double p = 1 /2*(a + B + C);
-            return Math.Sqrt(p * (p-a) *(p-B) *(p-C) ) ;
+            double p = 0.5 * (a + B + C);
+            return Math.Sqrt(p * (p - a) * (p - B) * (p - C));
         }
 
         public TryangleTypeEnum TypeTringle()
         {
-            if(a==B && B==C && B==C)
+            if (a == B && B == C && B == C)
             {
                 return TryangleTypeEnum.Equilateral;
             }

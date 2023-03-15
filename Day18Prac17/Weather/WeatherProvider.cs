@@ -1,46 +1,56 @@
-﻿namespace Weather
+﻿using System;
+
+namespace Weather
 {
     enum WeatherType
     {
         Sun,
         Rain,
+        Wind,
         Snow
     }
-    //моожно ли присвоить им значени DateOnly
-    public class WeatherProvider 
+   
+    public class WeatherProvider
     {
-        
+       
 
-        public void Input()
+        public DateOnly Data { get; init; }
+
+        public WeatherProvider(DateOnly date)
         {
-            Console.WriteLine("Select a date");
-            Console.WriteLine("1. 13.03.2023 \n 2. 14.03.2023 \n 3. 15.03.2023\n 4. 16.03.2023 \n 5. 17.03.2023 \n 6. 18.03.2023 \n 7. 19.03.2023");
-            int data = int.Parse(Console.ReadLine());
+            
+            Data = date;
         }
+
         public string GetWeather(DateOnly date)
         {
 
-            return $"{GetWeatherType(date)}: {GetTemperature(date)} ";
+            return $"{GetWeatherType(date)} {GetTemperature(date)} ";
         }
 
-        private int GetTemperature(DateOnly date)
+        public int GetTemperature(DateOnly date)
         {
-            
+            var random = new Random();
+
+            return date.Day switch
+            {
+                int winter when winter >= 1 || winter <= 30 => (int)random.Next(-25, 9),
+                int spring when spring >= 3 || spring <= 30 => (int)random.Next(0, 13),
+                int summer when summer >= 6 || summer <= 30 => (int)random.Next(4, 25),
+                int autumn when autumn >= 9 || autumn <= 30 => (int)random.Next(0, 10),
+
+            };
         }
 
-        // как засунуть метод в параметры другого 
-
-
-
-        private WeatherType GetWeatherType(DateOnly date)
+        WeatherType GetWeatherType(DateOnly date)
         {
             var random = new Random();
             return date.Month switch
             {
                 int winter when winter == 1 || winter == 2 || winter == 12 => (WeatherType)random.Next(0, 3),
                 int spring when spring == 3 || spring == 4 || spring == 5 => (WeatherType)random.Next(0, 2),
-                int summer when summer == 1 || summer == 2 || summer == 12 => (WeatherType)random.Next(0, 3),
-                //int ou when summer == 1 || summer == 2 || summer == 12 => (WeatherType)random.Next(0, 3),
+                int summer when summer == 6 || summer == 7 || summer == 8 => (WeatherType)random.Next(0, 2),
+                int autumn when autumn == 9 || autumn == 10 || autumn == 11 => (WeatherType)random.Next(0, 2),
 
             };
         }
