@@ -22,19 +22,29 @@ class MusicCatalogue
         discs.Remove(title);
     }
 
-    public void AddSong( string songTitle, string artist)
+    public void AddSong(string songTitle, string artist)
     {
         Hashtable songs = new Hashtable();
         if (songs != null)
         {
             songs[songTitle] = artist;
         }
+        
     }
-
-
    
-    
-
+    public void ViewDisc(string title)
+    {
+      
+        Hashtable songs = (Hashtable)discs[title];
+        //if (songs != null)
+        //{
+        //    foreach (DictionaryEntry song in songs)
+        //    {
+        //        Console.WriteLine(song.Key + " - " + song.Value);
+        //    }
+        //}
+        Console.WriteLine(songs);
+    }
     public void ViewCatalogue()
     {
         foreach (DictionaryEntry disc in discs)
@@ -87,7 +97,7 @@ class MusicCatalogue
                 Console.WriteLine("Ведите диск, который хотите добавить");
                 string disk2 = Console.ReadLine();
                 catalogue.RemoveDisc(disk2);
-               
+
                 break;
             default:
                 Console.WriteLine("Такого пункта нет");
@@ -95,35 +105,37 @@ class MusicCatalogue
         }
 
         Console.WriteLine();
-                Console.WriteLine($"Каталог дисков");
-                catalogue.ViewCatalogue();
+        Console.WriteLine($"Каталог дисков");
+        catalogue.ViewCatalogue();
         Console.WriteLine("Выберите номер диска, чтобы просмотреть информацию");
         int disk3 = int.Parse(Console.ReadLine());
         if (disk3 == 1)
         {
             Console.WriteLine("Песни на этом диске:");
-            catalogue.AddSong("Ветер с моря дул","Татьяна Буланова");
-            catalogue.AddSong("Чистый","Скриптонит");
-            catalogue.AddSong("Половинка","Танцы минус");
+            Console.WriteLine("Ветер с моря дул - "+ "Татьяна Буланова");
+            Console.WriteLine("Чистый - "+ "Скриптонит");
+            Console.WriteLine("Половинка - "+"Танцы минус");
+
         }
-        else if (disk3==2)
+        else if (disk3 == 2)
         {
             Console.WriteLine("Песни на этом диске:");
-            catalogue.AddSong("Ясный мой свет", "Татьяна Буланова");
-            catalogue.AddSong("Танцуй", "Скриптонит");
-            catalogue.AddSong("Паранойа", "Танцы минус");
+            Console.WriteLine("Ясный мой свет - "+"Татьяна Буланова");
+            Console.WriteLine("Танцуй - "+"Скриптонит");
+            Console.WriteLine("Паранойа - "+ "Танцы минус");
+    
         }
-        else if (disk3==3)
+        else if (disk3 == 3)
         {
 
             Console.WriteLine("Песни на этом диске:");
-            catalogue.AddSong("Ненаглядный", "Татьяна Буланова");
-            catalogue.AddSong("Baby", "Скриптонит");
-            catalogue.AddSong("Подожди", "Танцы минус");
+            Console.WriteLine("Ненаглядный - "+"Татьяна Буланова");
+           Console.WriteLine("Baby - "+ "Скриптонит");
+            Console.WriteLine("Подожди -  "+ "Танцы минус");
+      
         }
-        catalogue.ViewCatalogue();
 
-        
+
 
 
     }
