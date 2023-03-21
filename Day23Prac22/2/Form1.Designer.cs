@@ -52,9 +52,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(40, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 20);
+            this.label2.Size = new System.Drawing.Size(20, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Y";
+            this.label2.Text = "Q";
             // 
             // textBox1
             // 
