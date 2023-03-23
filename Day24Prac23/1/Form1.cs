@@ -1,3 +1,6 @@
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
+
 namespace _1
 {
     public partial class Form1 : Form
@@ -14,22 +17,46 @@ namespace _1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            char i = char.Parse(textBox1.Text);
-            char j = char.Parse(textBox2.Text);
-            string str = (string)listBox1.Items[0];
 
-            foreach (var item in str)
+          
+            string selectedText = listBox1.SelectedItem?.ToString();
+
+            if (selectedText != null)
             {
-                if(item == i)
-                {
-                    i = j;
-                }
-                else
-                {
-                  
-                }
+                
+                char charI = textBox1.Text.Length > 0 ? textBox1.Text[0] : '\0';
+
+              
+                char charJ = textBox2.Text.Length > 0 ? textBox2.Text[0] : '\0';
+
+               
+                string replacedText = ReplaceChars(selectedText, charI, charJ);
+
+               
+                label3.Text = replacedText;
             }
-            label3.Text += Environment.NewLine +  str;
+        }
+        private string ReplaceChars(string text, char charI, char charJ)
+        {
+            
+            char[] newChars = text.ToCharArray();
+
+         
+            for (int i = 0; i < newChars.Length; i++)
+            {
+                if (newChars[i] == charI)
+                {
+                    newChars[i] = charJ;
+                }
+               
+            }
+
+            return new string(newChars);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

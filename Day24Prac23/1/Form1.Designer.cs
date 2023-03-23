@@ -42,16 +42,20 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Items.AddRange(new object[] {
-            "Hello my friend how are you?"});
+            "Hello my friend how are you?",
+            "Hello",
+            "Computing ",
+            "Computer",
+            "Program"});
             this.listBox1.Location = new System.Drawing.Point(46, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(222, 44);
+            this.listBox1.Size = new System.Drawing.Size(222, 104);
             this.listBox1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 76);
+            this.label1.Location = new System.Drawing.Point(46, 151);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 20);
             this.label1.TabIndex = 1;
@@ -60,7 +64,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(46, 99);
+            this.textBox1.Location = new System.Drawing.Point(46, 196);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(54, 27);
             this.textBox1.TabIndex = 2;
@@ -68,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 140);
+            this.label2.Location = new System.Drawing.Point(46, 235);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(254, 20);
             this.label2.TabIndex = 3;
@@ -76,7 +80,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(46, 163);
+            this.textBox2.Location = new System.Drawing.Point(46, 285);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(54, 27);
             this.textBox2.TabIndex = 4;
@@ -85,16 +89,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(251, 237);
+            this.label3.Location = new System.Drawing.Point(248, 332);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 23);
             this.label3.TabIndex = 5;
             this.label3.Tag = "";
             this.label3.Text = "Замена слов";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(46, 231);
+            this.button1.Location = new System.Drawing.Point(46, 330);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
             this.button1.TabIndex = 6;
