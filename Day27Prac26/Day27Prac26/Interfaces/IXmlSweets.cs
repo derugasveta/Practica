@@ -11,6 +11,9 @@ namespace Day27Prac26.Interfaces
     {
         void Load(string xmlDokPath);
         void Add(SweetsSet sweets);
-      
+       SweetsSet FindBy(string typeSweet);
+
+
+
     }
 }

@@ -6,58 +6,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Xml;
 using System.Xml.Linq;
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace Day27Prac26.Share
 {
     internal class XmlDocumentSweets : IXmlSweets
     {
-        private readonly XDocument _document;
-
-
-        private string _xmlFilePath;
+        private readonly XmlDocument _document;
+            private string _xmlFilePath;
+       
 
 
         public void Add(SweetsSet sweets)
         {
+            var xRoot = _document.DocumentElement;
 
-            XDocument xdoc = new XDocument();
-            XElement sweetElem = new XElement("sweet1");
-            XElement typeSweetElem = new XElement("TypeSweet");
-            XText typeSweetText = new XText(sweets.TypeSweets);
-            XElement typeFrillElem = new XElement("TypeFrill");
-            XText typeFrillText = new XText(sweets.TypeFrill);
-            XElement priceElem = new XElement("Price");
-            XText priceText = new XText(sweets.Price.ToString());
+            XmlElement sweetsElem = _document.CreateElement("sweet");
+            XmlAttribute typeSweetsAttribute = _document.CreateAttribute("Type sweets");
+            XmlText xmlText = _document.CreateTextNode(sweets.TypeSweets);
+            typeSweetsAttribute.AppendChild(xmlText);
 
-            sweetElem.Add(typeSweetElem);
-            typeSweetElem.Add(typeSweetText);
-            sweetElem.Add(typeFrillElem);
-            typeFrillElem.Add(typeFrillText);
-            sweetElem.Add(priceElem);
-            priceElem.Add(priceText);
+            sweetsElem.AppendChild(sweetsElem);
 
-            XElement sweet2Elem = new XElement("sweet2");
-            XElement typeSweet2Elem = new XElement("TypeSweet", EnumSweets.Chocolate);
-            XElement typeFrill2Elem = new XElement("TypeFrill", EnumTypeFrill.Foil);
-            XElement price2Elem = new XElement("Price", "25");
-            sweet2Elem.Add(typeSweet2Elem);
-            sweet2Elem.Add(typeFrill2Elem);
-            sweet2Elem.Add(price2Elem);
+            XmlElement typeFrillElem = _document.CreateElement("Type Frill");
+            XmlText typeFrillText = _document.CreateTextNode(sweets.TypeFrill);
+            typeFrillElem.AppendChild(typeFrillElem);
 
-            XElement sweet = new XElement("sweets");
-            sweet.Add(sweetElem);
-            sweet.Add(sweet2Elem);
-            xdoc.Add(sweet);
-            xdoc.Save("sweets.xml");
-            Console.WriteLine("add");
+            XmlElement priceElem = _document.CreateElement("Price");
+            XmlText priceText = _document.CreateTextNode(sweets.Price.ToString());
+            priceElem.AppendChild(priceElem);
 
+             xRoot.AppendChild(sweetsElem);
+            _document.Save(_xmlFilePath);
         }
 
-        public void Load(string xmlDokPath)
+
+        public void Load(string xmlFieleRath)
         {
-            Console.WriteLine($"Файл в котором были сохранены данные, находится {xmlDokPath} ");
+            _xmlFilePath = xmlFieleRath;
+            _document.Load(xmlFieleRath);
+        }
+        public SweetsSet FindBy(string typesweet)
+        {
+            SweetsSet sweet = null;
+            var xRoot = _document.DocumentElement;
+            foreach (XmlNode xNode in xRoot)
+            {
+                sweet = GetSweet(xNode);
+                if (sweet.TypeSweets.Equals(typesweet))
+                {
+                    return sweet;
+                }
+            }
+            return sweet;
+        }
+
+        private SweetsSet GetSweet(XmlNode xNode)
+        {
+            var sweets = new SweetsSet();
+            if (xNode.Attributes.Count > 0)
+            {
+                var attributeName = xNode.Attributes.GetNamedItem("type sweets");
+                sweets.TypeSweets = attributeName?.Value;
+            }
+            foreach (XmlNode childNode in xNode.ChildNodes)
+            {
+                try
+                {
+                    if (childNode.Name.Equals("type frill"))
+                    {
+                        sweets.TypeFrill = childNode.InnerText;
+                    }
+                    if (childNode.Name.Equals("price"))
+                        sweets.Price = int.Parse(childNode.InnerText);
+                }
+                catch (Exception ex) when (ex is FormatException || ex is NullReferenceException)
+                {
+
+                }
+            }
+            return sweets;
         }
     }
-}
+    }
+    
+
+
